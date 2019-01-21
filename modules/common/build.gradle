@@ -1,0 +1,13 @@
+plugins {
+    id "org.openjfx.javafxplugin" version "0.0.7"
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext.description = 'Creates a common abstraction. Used by framework-specific ignite modules'
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}

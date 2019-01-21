@@ -1,0 +1,15 @@
+plugins {
+    id "org.openjfx.javafxplugin" version "0.0.7"
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+dependencies {
+    implementation 'com.google.inject:guice:4.2.2'
+    implementation project(':common')
+}
+
+ext.description = 'Creates a common abstraction over guice'
+

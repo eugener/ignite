@@ -1,7 +1,12 @@
 rootProject.name = 'ignite'
 
-include 'common'
-include 'dagger'
-include 'guice'
-include 'spring'
+include 'common','dagger', 'guice', 'spring', 'samples'
+
+project(':common').projectDir = file("modules/common")
+project(':dagger').projectDir = file("modules/dagger")
+project(':guice').projectDir = file("modules/guice")
+project(':spring').projectDir = file("modules/spring")
+project(':samples').projectDir = file("modules/samples")
+
+
 

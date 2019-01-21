@@ -1,0 +1,21 @@
+plugins {
+    id "org.openjfx.javafxplugin" version "0.0.7"
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+ext{
+    description = 'Creates a common abstraction over dagger'
+    dagger_version = '1.2.5'
+}
+
+
+dependencies {
+    implementation "com.squareup.dagger:dagger:$dagger_version"
+    implementation "com.squareup.dagger:dagger-compiler:$dagger_version"
+    implementation project(':common')
+}
+
+

@@ -1,16 +1,19 @@
+plugins {
+    id "java"
+}
+
 group = 'com.gluonhq'
-version = '1.0.3-SNAPSHOT'
+version = '2.0.0-SNAPSHOT'
 
-apply plugin: 'java'
-
-sourceCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_11
 
 subprojects {
+
     apply plugin: 'java'
     apply plugin: 'maven'
-    apply from: '../mavenPublish.gradle'
+    apply from: '../../mavenPublish.gradle'
 
-    sourceCompatibility = 1.8
+    sourceCompatibility = JavaVersion.VERSION_11
 
     repositories {
         mavenCentral()
@@ -37,6 +40,7 @@ subprojects {
     artifacts {
         archives sourcesJar, javadocJar
     }
+
 }
 
 repositories {
@@ -44,8 +48,11 @@ repositories {
 }
 
 dependencies {
-    compile project(':dagger')
-    compile project(':guice')
-    compile project(':spring')
-    compile project(':common')
+
+//    implementation project(':dagger')
+//    implementation project(':guice')
+//    implementation project(':spring')
+//    implementation project(':common')
+
+
 }

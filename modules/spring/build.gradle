@@ -1,0 +1,16 @@
+plugins {
+    id "org.openjfx.javafxplugin" version "0.0.7"
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+dependencies {
+    implementation 'org.springframework:spring-context:5.1.4.RELEASE'
+    implementation 'cglib:cglib:3.2.9'
+    implementation project(':common')
+}
+
+ext.description = 'Creates a common abstraction over spring'
+

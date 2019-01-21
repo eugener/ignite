@@ -1,0 +1,36 @@
+plugins {
+    id "org.openjfx.javafxplugin" version "0.0.7"
+    id "net.ltgt.apt" version "0.20"
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+ext{
+    description = 'Creates a common abstraction over dagger'
+    dagger_version = '1.2.5'
+}
+
+dependencies {
+
+//    implementation "com.squareup.dagger:dagger:$dagger_version"
+//    annotationProcessor "com.squareup.dagger:dagger-compiler:$dagger_version"
+
+    implementation 'com.google.inject:guice:4.2.2'
+
+//    implementation 'org.springframework:spring-context:5.1.4.RELEASE'
+//    implementation 'cglib:cglib:3.2.9'
+
+//    implementation 'aopalliance:aopalliance:1.0'
+
+
+    implementation project(':common')
+//    implementation project(':spring')
+    implementation project(':guice')
+//    implementation project(':dagger')
+
+    implementation 'javax.inject:javax.inject:1'
+}
+
+
