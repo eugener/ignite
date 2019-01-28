@@ -1,0 +1,36 @@
+plugins {
+    id "org.openjfx.javafxplugin" version "0.0.7"
+    id "application"
+}
+
+javafx {
+    modules = [ 'javafx.controls', 'javafx.fxml' ]
+}
+
+ext{
+    guice_version = '4.2.2'
+}
+
+
+mainClassName = 'com.gluonhq.ignite.guice.sample/com.gluonhq.ignite.guice.sample.GuiceApp'
+
+run {
+    doFirst {
+        // this is required for the guice package to be able to use java core packages
+        jvmArgs = ['--add-opens', 'java.base/java.lang=com.google.guice']
+    }
+}
+
+
+dependencies {
+
+    implementation 'javax.inject:javax.inject:1'
+
+    implementation "com.google.inject:guice:$guice_version"
+
+    implementation project(':common')
+    implementation project(':guice')
+
+}
+
+

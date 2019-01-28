@@ -1,6 +1,7 @@
 package com.gluonhq.ignite.spring;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ApplicationContextInitializer;
@@ -8,24 +9,21 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
 import java.util.Objects;
-import java.util.Optional;
 
-public final class SpringContext {
+public abstract class SpringFXApplication extends Application {
 
     private ConfigurableApplicationContext appContext;
     private Class<?> starterClass;
-    private Application app;
 
-
-    public SpringContext(Class<?> starterClass, Application app ) {
+    protected SpringFXApplication(Class<?> starterClass) {
         this.starterClass = Objects.requireNonNull(starterClass);
-        this.app = Objects.requireNonNull(app);
     }
 
+    @Override
     public void init() {
         ApplicationContextInitializer<GenericApplicationContext> initializer =
                 ctx -> {
-                    ctx.registerBean(Application.class, () -> app);
+                    ctx.registerBean(Application.class, () -> this);
                     ctx.registerBean( FXMLLoader.class, () -> {
                         FXMLLoader loader = new FXMLLoader();
                         loader.setControllerFactory(ctx::getBean);
@@ -36,11 +34,13 @@ public final class SpringContext {
         appContext =  new SpringApplicationBuilder()
                 .sources(starterClass)
                 .initializers(initializer)
-                .run( app.getParameters().getRaw().toArray(new String[0]));
+                .run( getParameters().getRaw().toArray(new String[0]));
     }
 
-    public final void stop() {
-        Optional.ofNullable(appContext).ifPresent(ConfigurableApplicationContext::close);
+    @Override
+    public final void stop() throws Exception {
+        appContext.stop();
+        Platform.exit();
     }
 
 }

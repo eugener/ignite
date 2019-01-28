@@ -30,7 +30,6 @@ public class GuiceContext implements DIContext {
         this.modules = Objects.requireNonNull(modules);
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -57,7 +56,7 @@ public class GuiceContext implements DIContext {
         injectMembers(contextRoot);
     }
 
-    private class FXModule extends AbstractModule {
+    public class FXModule extends AbstractModule {
 
         @Override
         protected void configure() {}

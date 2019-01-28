@@ -1,6 +1,7 @@
 plugins {
     id "org.openjfx.javafxplugin" version "0.0.7"
-    id "net.ltgt.apt" version "0.20"
+    id "net.ltgt.apt" version "0.20" // required only for dagger based apps
+    id "application"
 }
 
 javafx {
@@ -8,19 +9,22 @@ javafx {
 }
 
 ext{
-    description = 'Creates a common abstraction over dagger'
     dagger_version = '1.2.5'
 }
 
+mainClassName = 'com.gluonhq.ignite.dagger.sample/com.gluonhq.ignite.dagger.sample.DaggerApp'
 
 dependencies {
-    implementation "com.squareup.dagger:dagger:$dagger_version"
 
-    // following 2 dependencies are required only for dagger based apps
+    implementation 'javax.inject:javax.inject:1'
+
+    implementation "com.squareup.dagger:dagger:$dagger_version"
     compileOnly "com.squareup.dagger:dagger-compiler:$dagger_version"
     annotationProcessor "com.squareup.dagger:dagger-compiler:$dagger_version"
 
+    implementation project(':dagger')
     implementation project(':common')
+
 }
 
 

@@ -2,10 +2,14 @@ module com.gluonhq.ignite.spring {
 
     requires javafx.controls;
     requires javafx.fxml;
-    requires com.gluonhq.ignite;
-    requires spring.beans;
+    requires javafx.graphics;
+
+    requires spring.boot;
+    requires spring.boot.autoconfigure;
     requires spring.context;
+    requires spring.beans;
 
     exports com.gluonhq.ignite.spring;
+    opens com.gluonhq.ignite.spring;
 
 }
